@@ -7,11 +7,12 @@ String.prototype.trims = function (c) {
 }
 
 addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request))
+    event.respondWith(handleRequest(event))
 })
 
 
-async function handleRequest(request) {
+async function handleRequest(event) {
+    const request = event.request
     const {pathname, searchParams, origin} = new URL(request.url)
     if (pathname.includes('favicon')) {
         return Response.redirect('https://dash.cloudflare.com/favicon.ico', 301)
@@ -22,6 +23,10 @@ async function handleRequest(request) {
     oneDrive.host = origin
 
     try {
+        if (pathname.includes('lists')) {
+            const driveList = await getList()
+            return handlerResponse(driveList)
+        }
         if (pathname.includes('init')) {
             const oauth = await oneDrive.authorize()
             return handlerResponse(oauth)
