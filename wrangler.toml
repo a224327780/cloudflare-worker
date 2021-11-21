@@ -1,0 +1,11 @@
+name = "tuchuang"
+type = "webpack"
+account_id = "0b1b69fc601a0a377396a70e7149bb12"
+workers_dev = true
+route = "i.tuchuang.cf"
+zone_id = "a20a5b44ecd4b2760595a374a419b039"
+
+compatibility_date = "2021-11-21"
+kv_namespaces = [
+    { binding = "ONE_INDEX", preview_id = "abdc539d83624bdd98796a8d4823ac2f", id = "abdc539d83624bdd98796a8d4823ac2f" }
+]
