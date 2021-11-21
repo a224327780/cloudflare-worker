@@ -55,7 +55,10 @@ class OneDrive {
         return await this.api(`${this.drivePath}:/${filePath}`)
     }
 
-    async getFileList(path) {
+    async getFileList(path, page = null) {
+        if (page) {
+            return await this.api(path)
+        }
         const fields = this.query.get('fields') || this.file_fields
         let params = {
             select: fields,

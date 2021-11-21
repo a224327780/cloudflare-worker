@@ -56,7 +56,8 @@ async function handleRequest(request) {
             }
         } else {
             if (pathname.endsWith('/') || match.length === 2) {
-                data = await oneDrive.getFileList(match.length === 2 ? '' : match[2].trims('/'))
+                const page = request.headers.get('page')
+                data = await oneDrive.getFileList(match.length === 2 ? '' : match[2].trims('/'), page)
             } else {
                 data = await oneDrive.getFile(match[2])
             }
